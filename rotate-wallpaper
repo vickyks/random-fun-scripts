@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Rotate wallpaper on a cron job
+if [ $UID == "0" ]; then
+  exec su vicky -c $0
+fi
+
+eval $(cat /proc/$(pgrep lxsession)/environ | xargs -n1 -0 echo export )
+
+PICPATH="/home/vicky/Pictures/Wallpaper"
+
+pcmanfm -w $(echo $PICPATH/$(ls $PICPATH | shuf -n 1)) --wallpaper-mode=stretch

@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+# Remove spaces from filenames
+
+if ARGV[0]
+	dir = ARGV[0]
+else
+	dir = ""
+end
+
+ls = `ls #{dir}`.split("\n")
+`mkdir -p spaceremoved`
+
+ls.each {|f| 
+	puts "Renaming #{f} to #{f.gsub(' ', '-')}"
+	`cp #{f.gsub(' ','\ ')} spaceremoved/#{f.gsub(' ','-')}`
+	}
+
+puts `ls`
+
