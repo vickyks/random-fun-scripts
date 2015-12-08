@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+dir = "/home/vicky/Music/spaceremoved"
+target = "/home/vicky/Music/wav"
+
+ls = `ls #{dir}`.split("\n")
+
+ls.each { |f|
+	puts "mpg123 #{f.gsub('.mp3','')}.wav #{f}"
+	`mpg123 #{dir}/#{f} #{target}/#{f.gsub('.mp3','')}.wav `
+}
+
